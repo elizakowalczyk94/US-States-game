@@ -12,13 +12,13 @@ class State(Turtle):
         super().__init__()
         self.state_name = state_name.lower()
         self.states_file = pandas.read_csv(CSV_NAME)
+        self.states_list = self.states_file.state.to_list()
         self.penup()
         self.hideturtle()
         self.color("black")
 
     def is_name_ok(self):
-        states_list = self.states_file.state.to_list()
-        states_list_lower = [name.lower() for name in states_list]
+        states_list_lower = [name.lower() for name in self.states_list]
         if self.state_name in states_list_lower:
             return True
         else:
@@ -37,3 +37,11 @@ class State(Turtle):
                    move=False,
                    align=ALIGNMENT,
                    font=FONT)
+
+    def get_missed_states(self, guessed_states):
+        missed_states = []
+        states_list_lower = [name.lower() for name in self.states_list]
+        for elem in states_list_lower:
+            if elem not in guessed_states:
+                missed_states.append(elem)
+        return missed_states
