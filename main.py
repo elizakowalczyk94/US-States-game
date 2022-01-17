@@ -7,11 +7,10 @@ image = "blank_states_img.gif"
 screen.addshape(image)
 turtle.shape(image)
 
-is_game_on = True
 correct_answers = 0
 window_title = f"0/50 States correct"
 guessed_states = []
-while is_game_on:
+while len(guessed_states) < 50:
     user_guess = screen.textinput(title=window_title, prompt="What's another state's name?")
     state_obj = state.State(user_guess)
     if state_obj.state_name in guessed_states:
