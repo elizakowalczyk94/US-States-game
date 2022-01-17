@@ -39,9 +39,6 @@ class State(Turtle):
                    font=FONT)
 
     def get_missed_states(self, guessed_states):
-        missed_states = []
         states_list_lower = [name.lower() for name in self.states_list]
-        for elem in states_list_lower:
-            if elem not in guessed_states:
-                missed_states.append(elem)
+        missed_states = [item for item in states_list_lower if item not in guessed_states]
         return missed_states
